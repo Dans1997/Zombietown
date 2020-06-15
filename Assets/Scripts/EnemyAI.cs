@@ -22,6 +22,12 @@ public class EnemyAI : MonoBehaviour
         HandleTargetRange();
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
+    }
+
     private void HandleTargetRange()
     {
         float distanceToTarget = Vector3.Distance(target.position, transform.position);
