@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float chaseRange = 10f;
 
     float distanceToTarget = Mathf.Infinity;
-    bool isProvoked = false;
+    public bool isProvoked = false;
 
     // Visuals in Editor Mode
     private void OnDrawGizmosSelected()

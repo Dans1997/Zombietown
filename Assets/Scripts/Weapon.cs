@@ -8,8 +8,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] Camera FPCamera;
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 1f;
+
+    [Header("VFXs")]
     [SerializeField] ParticleSystem muzzleFlashVFX;
     [SerializeField] GameObject bulletHitVFX;
+
+    [Header("SFXs")]
+    [SerializeField] AudioClip fireSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +40,7 @@ public class Weapon : MonoBehaviour
     private void PlayMuzzleFlash()
     {
         muzzleFlashVFX.Play();
+        AudioSource.PlayClipAtPoint(fireSFX, transform.position, 0.2f);
     }
 
     private void ProcessRaycast()

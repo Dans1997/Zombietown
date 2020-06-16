@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public void ProcessHit(float damage)
     {
         health -= damage;
+        GetComponent<EnemyAI>().isProvoked = true;
 
         if (health <= 0)
         {
