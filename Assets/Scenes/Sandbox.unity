@@ -902,15 +902,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1726553086, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
-      propertyPath: bulletHitVFX
-      value: 
-      objectReference: {fileID: 971233966611533269, guid: 66e992afeb890444d8887be2425ab2bf,
-        type: 3}
-    - target: {fileID: 1726553086, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
-      propertyPath: fireSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 5c3d1a68f23e6d14baaa0a47832053f6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
 --- !u!1001 &1359890817
@@ -1616,11 +1607,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4972139638117188880, guid: 1d07605ead8ab314da93da676bd143f2,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 120940503}
     - target: {fileID: 6121542811969034105, guid: 1d07605ead8ab314da93da676bd143f2,
         type: 3}
       propertyPath: target
