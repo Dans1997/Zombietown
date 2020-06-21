@@ -230,7 +230,6 @@ MonoBehaviour:
   target: {fileID: 0}
   chaseRange: 10
   turnSpeed: 5
-  isProvoked: 0
 --- !u!114 &1821266542171028630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36391150f29c654ea658f721c9e27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 10
 --- !u!95 &1461729068
 Animator:
   serializedVersion: 3

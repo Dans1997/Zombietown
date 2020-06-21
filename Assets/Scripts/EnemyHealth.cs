@@ -8,15 +8,18 @@ public class EnemyHealth : MonoBehaviour
 
     public void ProcessHit(float damage)
     {
-        health -= damage;
-        GetComponent<EnemyAI>().isProvoked = true;
+        // Calls OnDamageTaken on every MonoBehaviour in this game object or any of its children
+        BroadcastMessage("OnDamageTaken", damage);
+    }
 
-        if (health <= 0)
-        {
-            print("Enemy is dead");
-            // Play deathSFX?
-            // Play death animation?
-            Destroy(gameObject);
-        }
+    private void OnDamageTaken(float damage)
+    {
+        health -= damage;
+        if (health > 0) return;
+
+        print("Enemy is dead");
+        // Play deathSFX?
+        // Play death animation?
+        Destroy(gameObject);
     }
 }

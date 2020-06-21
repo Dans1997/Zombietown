@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float health = 3f;
+    [SerializeField] GameObject gameOverCanvas;
+
+    private void Start()
+    {
+        gameOverCanvas.SetActive(false);
+    }
 
     public void ProcessHit(float damage)
     {
@@ -16,6 +22,16 @@ public class PlayerHealth : MonoBehaviour
             // Play deathSFX?
             // Play death animation?
             //Destroy(gameObject);
+            ActivateGameOverCanvas();
         }
+    }
+
+    private void ActivateGameOverCanvas()
+    {
+        gameOverCanvas.SetActive(true);
+        // Activate Cursor
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
