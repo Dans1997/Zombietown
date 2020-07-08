@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  gameOverCanvas: {fileID: 0}
 --- !u!114 &1726553086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,10 +331,12 @@ MonoBehaviour:
   FPCamera: {fileID: 2000000}
   range: 100
   damage: 1
+  ammoSlot: {fileID: 0}
   muzzleFlashVFX: {fileID: 3181600732968553988}
   bulletHitVFX: {fileID: 971233966611533269, guid: 66e992afeb890444d8887be2425ab2bf,
     type: 3}
   fireSFX: {fileID: 8300000, guid: 5c3d1a68f23e6d14baaa0a47832053f6, type: 3}
+  noAmmoSFX: {fileID: 8300000, guid: a75f0103b5269f543861c2a7a12a0be5, type: 3}
 --- !u!1001 &958615192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -399,7 +402,7 @@ PrefabInstance:
     - target: {fileID: 3832703582600972128, guid: bceefb2a39f6db74d9bc9d006687b7f1,
         type: 3}
       propertyPath: m_Name
-      value: Gun
+      value: M47
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bceefb2a39f6db74d9bc9d006687b7f1, type: 3}

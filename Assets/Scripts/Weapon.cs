@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] Camera FPCamera;
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 1f;
+    [SerializeField] Ammo ammoSlot;
 
     [Header("VFXs")]
     [SerializeField] ParticleSystem muzzleFlashVFX;
@@ -15,6 +16,7 @@ public class Weapon : MonoBehaviour
 
     [Header("SFXs")]
     [SerializeField] AudioClip fireSFX;
+    [SerializeField] AudioClip noAmmoSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +35,15 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
+        if (ammoSlot.GetCurrentAmmo() <= 0) 
+        {
+            /* NOT ENOUGH AMMO */
+            AudioSource.PlayClipAtPoint(noAmmoSFX, transform.position, 1f);
+            return; 
+        }
         PlayMuzzleFlash();
         ProcessRaycast();
+        ammoSlot.ReduceCurrentAmmo();
     }
 
     private void PlayMuzzleFlash()
