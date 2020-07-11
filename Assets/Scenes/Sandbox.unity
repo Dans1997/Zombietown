@@ -1185,14 +1185,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1726553086, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
-      propertyPath: ammoSlot
-      value: 
-      objectReference: {fileID: 1693996278}
-    - target: {fileID: 1726553086, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
-      propertyPath: noAmmoSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: a75f0103b5269f543861c2a7a12a0be5, type: 3}
     - target: {fileID: 3302686265494627840, guid: c6453f8e1f814744d8b94e5a6d1f9942,
         type: 3}
       propertyPath: gameOverCanvas
@@ -1200,28 +1192,6 @@ PrefabInstance:
       objectReference: {fileID: 2135212524}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
---- !u!1 &1257131181 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100004, guid: c6453f8e1f814744d8b94e5a6d1f9942,
-    type: 3}
-  m_PrefabInstance: {fileID: 1257131180}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1257131182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257131181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e01cf98603167b0448cb4988c9082b21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomedOutFOV: 60
-  zoomedInFOV: 20
-  zoomedOutSensitivity: 2
-  zoomedInSensitivity: 0.5
 --- !u!1001 &1359890817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1691,25 +1661,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590952807}
   m_CullTransparentMesh: 0
---- !u!1 &1693996277 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942,
-    type: 3}
-  m_PrefabInstance: {fileID: 1257131180}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1693996278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693996277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de3df90b233182742b8fbaa7cad91ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoCount: 16
 --- !u!1001 &1717130263
 PrefabInstance:
   m_ObjectHideFlags: 0
