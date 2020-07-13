@@ -33,9 +33,12 @@ public class WeaponZoom : MonoBehaviour
 
     private void SetZoom(float fov, float sensitivity)
     {
-        GetComponentInParent<Camera>().fieldOfView = fov;
-        GetComponentInParent<RigidbodyFirstPersonController>().mouseLook.XSensitivity = sensitivity;
-        GetComponentInParent<RigidbodyFirstPersonController>().mouseLook.YSensitivity = sensitivity;
+        if(GetComponentInParent<Camera>()) GetComponentInParent<Camera>().fieldOfView = fov;
+        if (GetComponentInParent<RigidbodyFirstPersonController>()) 
+        {
+            GetComponentInParent<RigidbodyFirstPersonController>().mouseLook.XSensitivity = sensitivity;
+            GetComponentInParent<RigidbodyFirstPersonController>().mouseLook.YSensitivity = sensitivity;
+        }
     }
 
 }

@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float health = 3f;
+
+    [Tooltip("Time in seconds to destroy zombie after death")]
+    [SerializeField] float deathDelay = 5f;
 
     public void ProcessHit(float damage)
     {
@@ -17,9 +21,18 @@ public class EnemyHealth : MonoBehaviour
         health -= damage;
         if (health > 0) return;
 
-        print("Enemy is dead");
         // Play deathSFX?
-        // Play death animation?
+        GetComponent<Animator>().SetTrigger("die");
+        GetComponent<EnemyAI>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        StartCoroutine(DestroyEnemy());
+    }
+
+    private IEnumerator DestroyEnemy()
+    {
+        yield return new WaitForSeconds(deathDelay);
         Destroy(gameObject);
     }
 }
