@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.472161, y: 2.0237794, z: 5.4314585}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0.3}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -120,4 +120,4 @@ MonoBehaviour:
     type: 3}
   fireSFX: {fileID: 8300000, guid: 5c3d1a68f23e6d14baaa0a47832053f6, type: 3}
   noAmmoSFX: {fileID: 8300000, guid: a75f0103b5269f543861c2a7a12a0be5, type: 3}
-  timeBetweenShots: 0.25
+  timeBetweenShots: 0.08

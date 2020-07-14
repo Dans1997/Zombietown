@@ -39,7 +39,7 @@ public class Weapon : MonoBehaviour
     {
         if (!isShootEnabled) return;
 
-        if(timeBetweenShots <= 0)
+        if (timeBetweenShots <= 0)
         {
             if (Input.GetMouseButtonDown(0)) StartCoroutine(Shoot());
         }
@@ -61,8 +61,14 @@ public class Weapon : MonoBehaviour
         } 
         else
         {
-            PlayMuzzleFlash();
-            ProcessRaycast();
+            RocketCreator rocketCreator = GetComponentInChildren<RocketCreator>();
+            if (rocketCreator) rocketCreator.SendMessage("FireRocket");
+            else 
+            {
+                PlayMuzzleFlash();
+                ProcessRaycast();
+            }
+          
             ammoSlot.ReduceCurrentAmmo(ammoType);
             yield return new WaitForSeconds(timeBetweenShots);
             isShootEnabled = true;
