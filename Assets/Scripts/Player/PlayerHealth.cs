@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public void ProcessHit(float damage)
     {
         health -= damage;
+        GetComponent<DamageDisplay>().ShowCanvas();
 
         if (health <= 0)
         {
