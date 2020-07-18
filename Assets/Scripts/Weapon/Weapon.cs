@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -19,9 +20,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] AudioClip fireSFX;
     [SerializeField] AudioClip noAmmoSFX;
 
+    [Header("Ammo Display Canvas")]
+    [SerializeField] Canvas ammoCanvas;
+
     bool isShootEnabled = true;
     [SerializeField] float timeBetweenShots = 0f;
-
 
     private void OnEnable()
     {
@@ -37,6 +40,9 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Display Ammo
+        ammoCanvas.GetComponentInChildren<Text>().text = ammoSlot.GetCurrentAmmo(ammoType).ToString();
+
         if (!isShootEnabled) return;
 
         if (timeBetweenShots <= 0)
