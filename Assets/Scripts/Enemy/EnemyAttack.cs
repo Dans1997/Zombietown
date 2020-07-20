@@ -16,7 +16,6 @@ public class EnemyAttack : MonoBehaviour
     public void AttackHitEvent()
     { 
         if(!target) { return; }
-        print("DIE, PLAYER!");
         target.GetComponent<PlayerHealth>().ProcessHit(damage);
     }
 }

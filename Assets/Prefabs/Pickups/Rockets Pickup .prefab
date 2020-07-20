@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoType: 2
   ammoAmount: 3
+  pickupSFX: {fileID: 8300000, guid: 658d1195293809d40b2431059c7ed1d2, type: 3}
 --- !u!135 &943866597668475285
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -76,11 +77,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isXEnabled: 0
-  isYEnabled: 1
-  isZEnabled: 0
+  isYEnabled: 0
+  isZEnabled: 1
   xSpeed: 0
-  ySpeed: 20
-  zSpeed: 0
+  ySpeed: 0
+  zSpeed: 20
 --- !u!1 &1454971243326382914
 GameObject:
   m_ObjectHideFlags: 0

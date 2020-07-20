@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoType: 0
   ammoAmount: 16
+  pickupSFX: {fileID: 8300000, guid: bd115f7d3eac9df40b336f5ad34a3c1e, type: 3}
 --- !u!135 &6226970686603696721
 SphereCollider:
   m_ObjectHideFlags: 0

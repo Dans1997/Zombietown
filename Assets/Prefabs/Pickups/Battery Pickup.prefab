@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restoreAngle: 65
   intensityAmount: 5
+  pickupSFX: {fileID: 8300000, guid: 14272bbd57742804d8ff43027aef0975, type: 3}
 --- !u!135 &8362572467810117175
 SphereCollider:
   m_ObjectHideFlags: 0
