@@ -14,7 +14,6 @@ public class Weapon : MonoBehaviour
 
     [Header("VFXs")]
     [SerializeField] ParticleSystem muzzleFlashVFX;
-    [SerializeField] GameObject bulletHitVFX;
 
     [Header("SFXs")]
     [SerializeField] AudioClip fireSFX;
@@ -92,8 +91,6 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
         {
-            GameObject gameObject = Instantiate(bulletHitVFX, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(gameObject, bulletHitVFX.GetComponentInChildren<ParticleSystem>().main.duration);
             EnemyHealth enemyHealth = hit.transform.GetComponent<EnemyHealth>();
             if (enemyHealth)
             {
