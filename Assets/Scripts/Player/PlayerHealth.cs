@@ -7,8 +7,16 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float health = 3f;
     [SerializeField] GameObject gameOverCanvas;
 
+    [Header("Player SFXs")]
+    [SerializeField] AudioClip damageSFX;
+    [SerializeField] AudioClip loseMusic;
+
+    // Cached Components
+    AudioSource audioSource;
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         gameOverCanvas.SetActive(false);
     }
 
@@ -16,13 +24,14 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         GetComponent<DamageDisplay>().ShowCanvas();
+        audioSource.PlayOneShot(damageSFX, 0.3f);
 
         if (health <= 0)
         {
-            print("Player is dead");
             // Play deathSFX?
             // Play death animation?
             //Destroy(gameObject);
+            FindObjectOfType<MusicPlayer>().ChangeClipTo(loseMusic, false);
             ActivateGameOverCanvas();
         }
     }

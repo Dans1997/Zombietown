@@ -9,25 +9,37 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float chaseRange = 10f;
     [SerializeField] float turnSpeed = 5f;
 
+    [Header("Zombie SFXs")]
+    [SerializeField] AudioClip idleSFX;
+    [SerializeField] AudioClip engageSFX;
+
     Transform target;
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
+
+    // Cached Components
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         target = FindObjectOfType<PlayerHealth>().transform;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool previousIsProvoked = isProvoked;
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         if (distanceToTarget <= chaseRange)
             isProvoked = true;
 
         if (isProvoked)
+        {
             EngageTarget();
+            if(!previousIsProvoked) audioSource.PlayOneShot(engageSFX, 0.5f);
+        }
     }
 
     private void EngageTarget()
