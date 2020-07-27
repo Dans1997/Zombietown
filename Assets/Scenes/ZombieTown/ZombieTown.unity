@@ -1850,6 +1850,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 617294740}
     m_Modifications:
+    - target: {fileID: 1821266542171028630, guid: 1d07605ead8ab314da93da676bd143f2,
+        type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 53fa6d04d37a844439af84c0e5b8a939, type: 3}
     - target: {fileID: 6121542811969034106, guid: 1d07605ead8ab314da93da676bd143f2,
         type: 3}
       propertyPath: m_Name

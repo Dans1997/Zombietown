@@ -10,6 +10,8 @@ public class EnemyHealth : MonoBehaviour
     [Tooltip("Time in seconds to destroy zombie after death")]
     [SerializeField] float deathDelay = 5f;
 
+    [SerializeField] AudioClip deathSFX;
+
     public void ProcessHit(float damage)
     {
         // Calls OnDamageTaken on every MonoBehaviour in this game object or any of its children
@@ -21,18 +23,14 @@ public class EnemyHealth : MonoBehaviour
         health -= damage;
         if (health > 0) return;
 
-        // Play deathSFX?
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.Stop();
+        audioSource.PlayOneShot(deathSFX, 1f);
         GetComponent<Animator>().SetTrigger("die");
         GetComponent<EnemyAI>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
 
-        StartCoroutine(DestroyEnemy());
-    }
-
-    private IEnumerator DestroyEnemy()
-    {
-        yield return new WaitForSeconds(deathDelay);
-        Destroy(gameObject);
+        Destroy(gameObject, deathDelay);
     }
 }
