@@ -25,7 +25,7 @@ public class EnemyHealth : MonoBehaviour
 
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
-        audioSource.PlayOneShot(deathSFX, 1f);
+        audioSource.PlayOneShot(deathSFX, .3f);
         GetComponent<Animator>().SetTrigger("die");
         GetComponent<EnemyAI>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
