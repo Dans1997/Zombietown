@@ -6,8 +6,10 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Zombie")]
     [SerializeField] float chaseRange = 10f;
     [SerializeField] float turnSpeed = 5f;
+    [SerializeField] bool startProvoked = false;
 
     [Header("Zombie SFXs")]
     [SerializeField] AudioClip idleSFX;
@@ -23,6 +25,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isProvoked = startProvoked;
         target = FindObjectOfType<PlayerHealth>().transform;
         audioSource = GetComponent<AudioSource>();
     }

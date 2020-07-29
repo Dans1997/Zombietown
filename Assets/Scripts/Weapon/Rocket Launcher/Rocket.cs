@@ -18,7 +18,6 @@ public class Rocket : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Rocket collided with " + other.gameObject.name);
         Vector3 origin = transform.position;
         Collider[] zombiesHit = Physics.OverlapSphere(origin, explosionRadius, zombieMask);
 

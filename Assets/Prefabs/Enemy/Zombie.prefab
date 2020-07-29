@@ -326,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseRange: 15
   turnSpeed: 5
+  startProvoked: 0
   idleSFX: {fileID: 8300000, guid: 247dc686d9da05949923ae4b161f3459, type: 3}
   engageSFX: {fileID: 8300000, guid: c65069252de1dc74184a341d2d2b3296, type: 3}
 --- !u!114 &1821266542171028630
@@ -340,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36391150f29c654ea658f721c9e27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 6
+  health: 8
   deathDelay: 15
   deathSFX: {fileID: 8300000, guid: 53fa6d04d37a844439af84c0e5b8a939, type: 3}
 --- !u!95 &1461729068

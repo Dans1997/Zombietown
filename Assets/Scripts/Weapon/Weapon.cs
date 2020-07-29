@@ -83,7 +83,7 @@ public class Weapon : MonoBehaviour
     private void PlayMuzzleFlash()
     {
         muzzleFlashVFX.Play();
-        AudioSource.PlayClipAtPoint(fireSFX, transform.position, 0.2f);
+        AudioSource.PlayClipAtPoint(fireSFX, transform.position, 0.1f);
     }
 
     private void ProcessRaycast()
