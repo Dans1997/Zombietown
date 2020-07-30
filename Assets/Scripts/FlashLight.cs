@@ -11,6 +11,7 @@ public class FlashLight : MonoBehaviour
 
     Light myLight = null;
     float restoreAngle = 80f;
+    float restoreIntensity = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class FlashLight : MonoBehaviour
 
     public void RestoreLightAngle() { myLight.spotAngle = restoreAngle; }
 
-    public void AddLightIntensity(float intensityAmount) { myLight.intensity += intensityAmount; }
+    public void RestoreIntensity() { myLight.intensity += restoreIntensity; }
 
     private void DecreaseLightAngle()
     {

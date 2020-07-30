@@ -14,7 +14,7 @@ public class BatteryPickup : MonoBehaviour
     {
         FlashLight flashlight = FindObjectOfType<FlashLight>();
         flashlight.RestoreLightAngle();
-        flashlight.AddLightIntensity(intensityAmount);
+        flashlight.RestoreIntensity();
         AudioSource.PlayClipAtPoint(pickupSFX, Camera.main.transform.position, 1f);
         Destroy(gameObject);
     }

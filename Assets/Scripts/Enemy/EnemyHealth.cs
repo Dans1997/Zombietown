@@ -31,6 +31,11 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
 
+        //Handle Drop
+        GameObject drop = GetComponent<DropHandler>()?.GetDrop();
+        Vector3 dropPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        if(drop) Instantiate(drop, dropPos, Quaternion.identity);
+
         Destroy(gameObject, deathDelay);
     }
 }

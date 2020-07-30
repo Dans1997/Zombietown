@@ -11,8 +11,6 @@ public class Ammo : MonoBehaviour
     {
         public AmmoType ammoType;
         public int ammoCount;
-
-
     }
 
     public int GetCurrentAmmo(AmmoType ammoType) { return GetAmmoSlot(ammoType).ammoCount; }
