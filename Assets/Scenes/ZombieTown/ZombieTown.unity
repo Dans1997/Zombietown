@@ -453,6 +453,11 @@ PrefabInstance:
       propertyPath: unlockedWeapon
       value: 
       objectReference: {fileID: 494481158}
+    - target: {fileID: 6157272856029928352, guid: f7e9c530ef85cb0459987725678cccc0,
+        type: 3}
+      propertyPath: pickupSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a999484b60671d4f9006f676a3312da, type: 3}
     - target: {fileID: 6157272856029928353, guid: f7e9c530ef85cb0459987725678cccc0,
         type: 3}
       propertyPath: m_Name
@@ -2230,7 +2235,7 @@ PrefabInstance:
     - target: {fileID: 4655907366711610075, guid: 7dfd136214f8c9d48bfb753061806b23,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 101.55
+      value: 100.88
       objectReference: {fileID: 0}
     - target: {fileID: 4655907366711610075, guid: 7dfd136214f8c9d48bfb753061806b23,
         type: 3}
@@ -2276,16 +2281,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4655907366711610075, guid: 7dfd136214f8c9d48bfb753061806b23,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.15000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4655907366711610075, guid: 7dfd136214f8c9d48bfb753061806b23,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.15000002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dfd136214f8c9d48bfb753061806b23, type: 3}
@@ -11745,6 +11740,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1888390391}
     m_Modifications:
+    - target: {fileID: 829455180997683682, guid: f8ce75254b505ca43b61a532a93bd513,
+        type: 3}
+      propertyPath: pickupSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a999484b60671d4f9006f676a3312da, type: 3}
+    - target: {fileID: 829455180997683682, guid: f8ce75254b505ca43b61a532a93bd513,
+        type: 3}
+      propertyPath: unlockedWeapon
+      value: 
+      objectReference: {fileID: 1416057936}
     - target: {fileID: 829455180997683683, guid: f8ce75254b505ca43b61a532a93bd513,
         type: 3}
       propertyPath: m_Name
@@ -13522,6 +13527,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1417808105}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1416057936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7516473413353313683, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+    type: 3}
+  m_PrefabInstance: {fileID: 1793715122}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 835bcfa39bf8a994a9c34e43c6bffad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1417808105
 PrefabInstance:
   m_ObjectHideFlags: 0
