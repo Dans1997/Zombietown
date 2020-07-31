@@ -52,15 +52,20 @@ public class SpawnerController : MonoBehaviour
             yield return new WaitForSeconds(1f);
             timeElapsed += 1;
             timerText.text = (increaseRateDelay - timeElapsed).ToString() + "s";
-            if (timeElapsed == increaseRateDelay)
-            { 
-                BroadcastMessage("SpeedUpSpawnRateBy", increaseRate);
-                playerBase?.HandleBaseActivation(timeElapsed);
-                timeElapsed = 0;
+            playerBase.HandleBaseActivation(timeElapsed);
+            HandleSpawnersRates();
+        }
+    }
 
-                // SFXs
-                AudioSource.PlayClipAtPoint(enableSpawnerSFX, Camera.main.transform.position, 1f);
-            }        
+    private void HandleSpawnersRates()
+    {
+        if (timeElapsed == increaseRateDelay)
+        {
+            BroadcastMessage("SpeedUpSpawnRateBy", increaseRate);
+            timeElapsed = 0;
+
+            // SFXs
+            AudioSource.PlayClipAtPoint(enableSpawnerSFX, Camera.main.transform.position, 1f);
         }
     }
 

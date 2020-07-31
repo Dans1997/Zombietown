@@ -13,7 +13,7 @@ public class Base : MonoBehaviour
     [SerializeField] Canvas enableBaseCanvas;
 
     bool hasEnabledBase = false;
-
+    int baseTimeElapsed = 0;
 
     // Start is called before the first frame update
     private void Start()
@@ -25,10 +25,15 @@ public class Base : MonoBehaviour
 
     public void HandleBaseActivation(int timeElapsed)
     {
-        if (timeElapsed < maxTime || hasEnabledBase) return;
+        baseTimeElapsed += 1;
+        if (baseTimeElapsed < maxTime || hasEnabledBase) return;
         hasEnabledBase = true;
         GetComponent<BoxCollider>().enabled = true;
         StartCoroutine(ShowCanvas(enableBaseCanvas, 5f));
+
+        // Handle Panic Mode
+        GetComponentInChildren<PanicModeRespawner>()?.RespawnAllZombies(); // Will respawn all zombies in the woods
+        BroadcastMessage("EnterPanicMode");
     }
 
     IEnumerator ShowCanvas(Canvas canvas, float canvasTime)

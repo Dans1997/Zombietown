@@ -5,8 +5,10 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] EnemyHealth enemyPrefab;
+    [SerializeField] EnemyHealth enemyPanicPrefab;
     [SerializeField] float spawnRate;
 
+    EnemyHealth selectedPrefab;
     bool isEnabled = false;
     float minSpawnRate = 3f;
 
@@ -16,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        selectedPrefab = enemyPrefab;
         meshRenderer = GetComponent<MeshRenderer>();
         StartCoroutine(SpawnEnemy());
     }
@@ -29,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private void EnterPanicMode() { selectedPrefab = enemyPanicPrefab; spawnRate = 3f; }
 
     private void SetSpawnerActive(bool active) => isEnabled = active;
 
