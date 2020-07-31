@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         gameOverCanvas.SetActive(false);
+        transform.position = FindObjectOfType<Base>().transform.position;
     }
 
     public void ProcessHit(float damage)

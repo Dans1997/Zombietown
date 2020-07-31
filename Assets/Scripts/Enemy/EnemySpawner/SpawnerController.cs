@@ -1,34 +1,74 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnerController : MonoBehaviour
 {
-    [SerializeField] float increaseRateDelay;
+    [SerializeField] int increaseRateDelay;
 
-    [Header("Enable Spawner SFX")]
+    [Header("Spawner")]
+    [SerializeField] Canvas enableSpawnerCanvas;
     [SerializeField] AudioClip enableSpawnerSFX;
-
-    [Header("Music")]
     [SerializeField] AudioClip enableSpawnerMusic;
+
+    [Header("Timer")]
+    [SerializeField] Text timerText;
+
+    int timeElapsed = 0;
 
     float increaseRate = 1f;
     bool hasEnabledSpawners = false;
+
+    // Cached Components
+    Base playerBase;
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        playerBase = FindObjectOfType<Base>();
+        enableSpawnerCanvas.enabled = false;
+        timerText.text = (increaseRateDelay - timeElapsed).ToString() + "s";
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.GetComponent<PlayerHealth>() || hasEnabledSpawners) return;
         hasEnabledSpawners = true;
         StartCoroutine(HandleSpawnRate());
+        StartCoroutine(ShowCanvas(enableSpawnerCanvas, 10f));
         BroadcastMessage("SetSpawnerActive", true);
-        AudioSource.PlayClipAtPoint(enableSpawnerSFX, Camera.main.transform.position, 1f);
+
+        // SFXs
         FindObjectOfType<MusicPlayer>()?.ChangeClipTo(enableSpawnerMusic, true);
+        AudioSource.PlayClipAtPoint(enableSpawnerSFX, Camera.main.transform.position, 1f);
     }
 
     IEnumerator HandleSpawnRate()
     {
-        yield return new WaitForSeconds(increaseRateDelay);
-        BroadcastMessage("SpeedUpSpawnRateBy", increaseRate);
-        AudioSource.PlayClipAtPoint(enableSpawnerSFX, Camera.main.transform.position, 1f);
+        while(true)
+        {
+            yield return new WaitForSeconds(1f);
+            timeElapsed += 1;
+            timerText.text = (increaseRateDelay - timeElapsed).ToString() + "s";
+            if (timeElapsed == increaseRateDelay)
+            { 
+                BroadcastMessage("SpeedUpSpawnRateBy", increaseRate);
+                playerBase?.HandleBaseActivation(timeElapsed);
+                timeElapsed = 0;
+
+                // SFXs
+                AudioSource.PlayClipAtPoint(enableSpawnerSFX, Camera.main.transform.position, 1f);
+            }        
+        }
     }
+
+    IEnumerator ShowCanvas(Canvas canvas, float canvasTime)
+    {
+        canvas.enabled = true;
+        yield return new WaitForSeconds(canvasTime);
+        canvas.enabled = false;
+    }
+
 }

@@ -29,11 +29,8 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void SetSpawnerActive(bool active) { isEnabled = active; }
 
-    private void SpeedUpSpawnRateBy(float speedUpTime)
-    {
-        spawnRate -= speedUpTime;
-        if (spawnRate <= minSpawnRate) spawnRate = 3;
-    }
+    private void SetSpawnerActive(bool active) => isEnabled = active;
+
+    private void SpeedUpSpawnRateBy(float speedUpTime) => spawnRate = Mathf.Max(spawnRate, minSpawnRate);
 }
