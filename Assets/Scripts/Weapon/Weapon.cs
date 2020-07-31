@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Weapon Specs")]
     [SerializeField] Camera FPCamera;
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 1f;
+    [SerializeField] float timeBetweenShots = 0f;
+    [SerializeField] bool isWeaponUnlocked = false;
     [SerializeField] Ammo ammoSlot;
     [SerializeField] AmmoType ammoType;
 
@@ -23,7 +26,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] Canvas ammoCanvas;
 
     bool isShootEnabled = true;
-    [SerializeField] float timeBetweenShots = 0f;
 
     private void OnEnable()
     {
@@ -33,12 +35,14 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.SetActive(isWeaponUnlocked);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isWeaponUnlocked) return;
+
         // Display Ammo
         ammoCanvas.GetComponentInChildren<Text>().text = ammoSlot.GetCurrentAmmo(ammoType).ToString();
 
@@ -53,6 +57,10 @@ public class Weapon : MonoBehaviour
             if(Input.GetMouseButton(0)) StartCoroutine(Shoot());
         }
     }
+
+    public bool IsWeaponUnlocked() => isWeaponUnlocked;
+
+    public void UnlockWeapon() => isWeaponUnlocked = true;
 
     private IEnumerator Shoot()
     {

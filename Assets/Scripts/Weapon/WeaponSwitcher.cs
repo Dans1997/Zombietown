@@ -41,6 +41,8 @@ public class WeaponSwitcher : MonoBehaviour
         if (previousWeapon != currentWeapon) SetWeaponActive();
     }
 
+    public void SetCurrentWeapon(int newWeaponCode) { currentWeapon = newWeaponCode; SetWeaponActive(); }
+
     private void ProcessKeyInput()
     {
         int aux = 0;
@@ -89,7 +91,8 @@ public class WeaponSwitcher : MonoBehaviour
 
         foreach (Transform weapon in transform) 
         {
-            weapon.gameObject.SetActive(weaponIndex == currentWeapon);
+            if(weapon.GetComponent<Weapon>().IsWeaponUnlocked())
+                weapon.gameObject.SetActive(weaponIndex == currentWeapon);
             weaponIndex++;
         }
     }
