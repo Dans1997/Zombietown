@@ -13,7 +13,7 @@ public class AmmoPickup : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         FindObjectOfType<Ammo>().IncreaseCurrentAmmo(ammoType, ammoAmount);
-        AudioSource.PlayClipAtPoint(pickupSFX, Camera.main.transform.position, 0.4f);
+        AudioSource.PlayClipAtPoint(pickupSFX, Camera.main.transform.position, 0.1f);
         Destroy(gameObject);
     }
 }

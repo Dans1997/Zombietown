@@ -59,7 +59,7 @@ public class RocketCreator : MonoBehaviour
         newRocket.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * launchPower);
 
         muzzleFlashVFX.Play();
-        AudioSource.PlayClipAtPoint(fireSFX, transform.position, 0.4f);
+        AudioSource.PlayClipAtPoint(fireSFX, transform.position, 0.1f);
 
         hasFired = true;
     }
