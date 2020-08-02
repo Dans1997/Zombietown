@@ -23,6 +23,8 @@ public class Base : MonoBehaviour
         GetComponent<BoxCollider>().enabled = false;
     }
 
+    public int GetMaxTime() => maxTime;
+
     public void HandleBaseActivation(int timeElapsed)
     {
         baseTimeElapsed += 1;

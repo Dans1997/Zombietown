@@ -17,7 +17,7 @@ public class SpawnerController : MonoBehaviour
     [SerializeField] Text timerText;
 
     int timeElapsed = 0;
-
+    int waveNumber = 0;
     float increaseRate = 1f;
     bool hasEnabledSpawners = false;
 
@@ -28,8 +28,9 @@ public class SpawnerController : MonoBehaviour
     private void Start()
     {
         playerBase = FindObjectOfType<Base>();
+        waveNumber = playerBase.GetMaxTime() / increaseRateDelay;
         enableSpawnerCanvas.enabled = false;
-        timerText.text = (increaseRateDelay - timeElapsed).ToString() + "s";
+        UpdateUI();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,9 +52,9 @@ public class SpawnerController : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             timeElapsed += 1;
-            timerText.text = (increaseRateDelay - timeElapsed).ToString() + "s";
             playerBase.HandleBaseActivation(timeElapsed);
             HandleSpawnersRates();
+            UpdateUI();
         }
     }
 
@@ -63,10 +64,18 @@ public class SpawnerController : MonoBehaviour
         {
             BroadcastMessage("SpeedUpSpawnRateBy", increaseRate);
             timeElapsed = 0;
+            waveNumber--;
+            UpdateUI();
 
             // SFXs
             AudioSource.PlayClipAtPoint(enableSpawnerSFX, Camera.main.transform.position, 1f);
         }
+    }
+
+    private void UpdateUI()
+    {
+        if(increaseRateDelay - timeElapsed < 10) timerText.text = waveNumber + "x 0" + (increaseRateDelay - timeElapsed).ToString() + "s";
+        else timerText.text = waveNumber + "x " + (increaseRateDelay - timeElapsed).ToString() + "s";
     }
 
     IEnumerator ShowCanvas(Canvas canvas, float canvasTime)
