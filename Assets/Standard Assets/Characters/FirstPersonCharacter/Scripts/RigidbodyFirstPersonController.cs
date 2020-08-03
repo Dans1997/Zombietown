@@ -90,6 +90,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
 
 
+        private AudioSource m_AudioSource;
+        [SerializeField] private AudioClip jumpSFX; 
+
         public Vector3 Velocity
         {
             get { return m_RigidBody.velocity; }
@@ -122,6 +125,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
+            m_AudioSource = GetComponent<AudioSource>();
             mouseLook.Init (transform, cam.transform);
         }
 
@@ -168,6 +172,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     m_RigidBody.velocity = new Vector3(m_RigidBody.velocity.x, 0f, m_RigidBody.velocity.z);
                     m_RigidBody.AddForce(new Vector3(0f, movementSettings.JumpForce, 0f), ForceMode.Impulse);
                     m_Jumping = true;
+                    m_AudioSource.PlayOneShot(jumpSFX, 0.35f);
                 }
 
                 if (!m_Jumping && Mathf.Abs(input.x) < float.Epsilon && Mathf.Abs(input.y) < float.Epsilon && m_RigidBody.velocity.magnitude < 1f)

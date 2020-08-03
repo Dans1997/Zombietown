@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 829455180997683683}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 31.14421, y: 101, z: -21.080055}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.15, y: 0.15000002, z: 0.15000002}
   m_Children:
   - {fileID: 3348036590925197605}
   m_Father: {fileID: 0}
@@ -45,7 +45,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10.39
+  m_Radius: 10
   m_Center: {x: 0, y: 2.96, z: 5}
 --- !u!114 &829455180997683682
 MonoBehaviour:
@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockedWeapon: {fileID: 0}
   weaponCode: 2
+  pickupSFX: {fileID: 8300000, guid: 4a999484b60671d4f9006f676a3312da, type: 3}
 --- !u!114 &3305736037145222776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,13 +105,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716392010752551947}
-  m_LocalRotation: {x: 0, y: 0.9659258, z: -0.2588191, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 5, z: 6}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children: []
   m_Father: {fileID: 6147787191546409355}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 180, z: 0}
 --- !u!33 &2245975236886148062
 MeshFilter:
   m_ObjectHideFlags: 0

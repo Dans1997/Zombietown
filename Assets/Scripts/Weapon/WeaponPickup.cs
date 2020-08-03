@@ -15,7 +15,7 @@ public class WeaponPickup : MonoBehaviour
         if (!other.GetComponent<PlayerHealth>()) return;
         unlockedWeapon.UnlockWeapon();
         unlockedWeapon.GetComponentInParent<WeaponSwitcher>()?.SetCurrentWeapon(weaponCode);
-        AudioSource.PlayClipAtPoint(pickupSFX, transform.position, 0.2f);
+        if(pickupSFX) AudioSource.PlayClipAtPoint(pickupSFX, transform.position, 0.2f);
         Destroy(gameObject);
     }
 }
