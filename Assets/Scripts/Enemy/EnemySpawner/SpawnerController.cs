@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class SpawnerController : MonoBehaviour
 {
-    [SerializeField] int increaseRateDelay;
-
     [Header("Spawner")]
     [SerializeField] Canvas enableSpawnerCanvas;
     [SerializeField] AudioClip enableSpawnerSFX;
@@ -16,6 +14,7 @@ public class SpawnerController : MonoBehaviour
     [Header("Timer")]
     [SerializeField] Text timerText;
 
+    int increaseRateDelay = 60; // Each wave is 1 minute long
     int timeElapsed = 0;
     int waveNumber = 0;
     float increaseRate = 1f;
@@ -65,6 +64,11 @@ public class SpawnerController : MonoBehaviour
             BroadcastMessage("SpeedUpSpawnRateBy", increaseRate);
             timeElapsed = 0;
             waveNumber--;
+            if (waveNumber == 0)
+            {
+                StopAllCoroutines();
+                timerText.text = "Run....";
+            }
             UpdateUI();
 
             // SFXs

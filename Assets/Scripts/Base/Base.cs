@@ -31,10 +31,13 @@ public class Base : MonoBehaviour
         if (baseTimeElapsed < maxTime || hasEnabledBase) return;
         hasEnabledBase = true;
         GetComponent<BoxCollider>().enabled = true;
+        FindObjectOfType<ArrowPointer>().GetComponent<MeshRenderer>().enabled = true;
         StartCoroutine(ShowCanvas(enableBaseCanvas, 5f));
 
         // Handle Panic Mode
         GetComponentInChildren<PanicModeRespawner>()?.RespawnAllZombies(); // Will respawn all zombies in the woods
+        SpawnerController spawnerController = FindObjectOfType<SpawnerController>();
+        Destroy(spawnerController.gameObject);
         BroadcastMessage("EnterPanicMode");
     }
 

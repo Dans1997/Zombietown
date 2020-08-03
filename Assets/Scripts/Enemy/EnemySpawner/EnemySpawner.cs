@@ -23,6 +23,12 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemy());
     }
 
+    void OnEnable()
+    {
+        StopAllCoroutines();
+        StartCoroutine(SpawnEnemy());
+    }
+
     IEnumerator SpawnEnemy()
     {
         while(true)

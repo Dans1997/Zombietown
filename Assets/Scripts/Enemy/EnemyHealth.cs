@@ -10,7 +10,9 @@ public class EnemyHealth : MonoBehaviour
     [Tooltip("Time in seconds to destroy zombie after death")]
     [SerializeField] float deathDelay = 5f;
 
+    [Header("SFX")]
     [SerializeField] AudioClip deathSFX;
+    [SerializeField] AudioClip damageSFX;
 
     public void ProcessHit(float damage)
     {
@@ -21,9 +23,11 @@ public class EnemyHealth : MonoBehaviour
     private void OnDamageTaken(float damage)
     {
         health -= damage;
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(damageSFX, .3f);
+
         if (health > 0) return;
 
-        AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
         audioSource.PlayOneShot(deathSFX, .3f);
         GetComponent<Animator>().SetTrigger("die");

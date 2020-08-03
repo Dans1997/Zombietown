@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRange: 15
-  turnSpeed: 5
+  turnSpeed: 8
   startProvoked: 0
   idleSFX: {fileID: 8300000, guid: 247dc686d9da05949923ae4b161f3459, type: 3}
   engageSFX: {fileID: 8300000, guid: c65069252de1dc74184a341d2d2b3296, type: 3}
@@ -364,6 +364,7 @@ MonoBehaviour:
   health: 8
   deathDelay: 15
   deathSFX: {fileID: 8300000, guid: 53fa6d04d37a844439af84c0e5b8a939, type: 3}
+  damageSFX: {fileID: 8300000, guid: df135567eec7fbb4093349f194a9f35c, type: 3}
 --- !u!114 &4972139638117188880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +396,7 @@ MonoBehaviour:
     dropChance: 0.1
   - dropPrefab: {fileID: 6226970686603696723, guid: 4b931294715e665438eaa5848b81838f,
       type: 3}
-    dropChance: 0.4
+    dropChance: 0.5
   - dropPrefab: {fileID: 943866597668475287, guid: fe043ffed8ad82842a44583c8acaee01,
       type: 3}
     dropChance: 0.05
