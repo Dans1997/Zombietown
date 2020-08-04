@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
     {
         health -= damage;
         AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(damageSFX, .3f);
+        audioSource.PlayOneShot(damageSFX, .8f);
 
         if (health > 0) return;
 

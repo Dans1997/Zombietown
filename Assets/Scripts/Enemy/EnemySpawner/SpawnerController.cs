@@ -69,7 +69,7 @@ public class SpawnerController : MonoBehaviour
                 StopAllCoroutines();
                 timerText.text = "Run....";
             }
-            UpdateUI();
+            else UpdateUI();
 
             // SFXs
             AudioSource.PlayClipAtPoint(enableSpawnerSFX, Camera.main.transform.position, 1f);

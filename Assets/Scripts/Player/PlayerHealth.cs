@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int maxHealth = 10;
+    [SerializeField] float currentHealth = 10;
     [SerializeField] Text healthText;
     [SerializeField] GameObject gameOverCanvas;
 
@@ -17,7 +17,8 @@ public class PlayerHealth : MonoBehaviour
 
     bool hasTakenDamage = false;
     float health = 10;
-    int healthRecoveryDelay = 5;
+    float maxHealth = 10;
+    int healthRecoveryDelay = 7;
     int healthRecoveryAmount = 5;
 
     // Cached Components
@@ -76,8 +77,18 @@ public class PlayerHealth : MonoBehaviour
         hasTakenDamage = true;
         yield return new WaitForSeconds(healthRecoveryDelay);
         hasTakenDamage = false;
+
         float newHealth = health + healthRecoveryAmount;
-        health = Mathf.Min(newHealth, maxHealth);
+        if (newHealth < maxHealth)
+        {
+            maxHealth = newHealth;
+            currentHealth = newHealth;
+        } 
+        else
+        {
+            currentHealth = Mathf.Min(newHealth, maxHealth);
+        }
+
         audioSource.PlayOneShot(healthRecoverSFX, 1f);
         healthText.text = health.ToString();
     }
