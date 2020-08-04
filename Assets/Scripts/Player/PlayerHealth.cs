@@ -16,7 +16,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] AudioClip loseMusic;
 
     bool hasTakenDamage = false;
-    float health = 10;
     float maxHealth = 10;
     int healthRecoveryDelay = 7;
     int healthRecoveryAmount = 5;
@@ -26,10 +25,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        health = 10;
         audioSource = GetComponent<AudioSource>();
         gameOverCanvas.SetActive(false);
-        healthText.text = health.ToString();
+        healthText.text = currentHealth.ToString();
 
         // Handle Position Spawn
         HandlePlayerSpawn();      
@@ -46,21 +44,21 @@ public class PlayerHealth : MonoBehaviour
 
     public void ProcessHit(float damage)
     {
-        health -= damage;
+        currentHealth -= damage;
         StopAllCoroutines();
         StartCoroutine(HandleHealthRecovery());
 
         GetComponent<DamageDisplay>().ShowCanvas();
         audioSource.PlayOneShot(damageSFX, 0.3f);
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             FindObjectOfType<MusicPlayer>().ChangeClipTo(loseMusic, false);
             ActivateGameOverCanvas();
         }
 
         // Handle UI
-        healthText.text = health.ToString();
+        healthText.text = currentHealth.ToString();
     }
 
     private void ActivateGameOverCanvas()
@@ -78,7 +76,7 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(healthRecoveryDelay);
         hasTakenDamage = false;
 
-        float newHealth = health + healthRecoveryAmount;
+        float newHealth = currentHealth + healthRecoveryAmount;
         if (newHealth < maxHealth)
         {
             maxHealth = newHealth;
@@ -86,10 +84,10 @@ public class PlayerHealth : MonoBehaviour
         } 
         else
         {
-            currentHealth = Mathf.Min(newHealth, maxHealth);
+            currentHealth = maxHealth;
         }
 
         audioSource.PlayOneShot(healthRecoverSFX, 1f);
-        healthText.text = health.ToString();
+        healthText.text = currentHealth.ToString();
     }
 }
