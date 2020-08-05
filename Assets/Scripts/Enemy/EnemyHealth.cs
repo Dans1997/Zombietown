@@ -34,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<EnemyAI>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        FindObjectOfType<SpawnerController>()?.DecreaseZombieNumber();
 
         //Handle Drop
         GameObject drop = GetComponent<DropHandler>()?.GetDrop();

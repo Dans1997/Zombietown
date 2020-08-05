@@ -12,6 +12,8 @@ public class Base : MonoBehaviour
     [SerializeField] int maxTime = 300;
     [SerializeField] Canvas enableBaseCanvas;
 
+    [SerializeField] AudioClip panicModeMusic;
+
     bool hasEnabledBase = false;
     int baseTimeElapsed = 0;
 
@@ -37,6 +39,7 @@ public class Base : MonoBehaviour
         // Handle Panic Mode
         GetComponentInChildren<PanicModeRespawner>()?.RespawnAllZombies(); // Will respawn all zombies in the woods
         SpawnerController spawnerController = FindObjectOfType<SpawnerController>();
+        //FindObjectOfType<MusicPlayer>()?.ChangeClipTo(panicModeMusic, true);
         Destroy(spawnerController.gameObject);
         BroadcastMessage("EnterPanicMode");
     }

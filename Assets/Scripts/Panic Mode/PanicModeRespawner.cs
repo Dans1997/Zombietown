@@ -20,5 +20,6 @@ public class PanicModeRespawner : MonoBehaviour
         {
             child.gameObject.SetActive(true);
         }
+        BroadcastMessage("EnterPanicMode");
     }
 }
