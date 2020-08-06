@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     EnemyHealth selectedPrefab;
     [SerializeField] bool panicMode = false;
     bool isEnabled = false;
-    float minSpawnRate = 3f;
+    float minSpawnRate = 5f;
 
     //Cached Components
     SpawnerController spawnerController;
@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void EnterPanicMode() { selectedPrefab = enemyPanicPrefab; spawnRate = 3f; panicMode = true; }
+    private void EnterPanicMode() { selectedPrefab = enemyPanicPrefab; spawnRate = minSpawnRate; panicMode = true; }
 
     private void SetSpawnerActive(bool active) => isEnabled = active;
 

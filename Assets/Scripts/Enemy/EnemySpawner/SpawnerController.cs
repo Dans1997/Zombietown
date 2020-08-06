@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SpawnerController : MonoBehaviour
 {
     [Header("Spawner")]
-    [SerializeField] int maxZombiesInScene = 40;
+    [SerializeField] int maxZombiesInScene = 30;
     [SerializeField] Canvas enableSpawnerCanvas;
     [SerializeField] AudioClip enableSpawnerSFX;
     [SerializeField] AudioClip enableSpawnerMusic;
