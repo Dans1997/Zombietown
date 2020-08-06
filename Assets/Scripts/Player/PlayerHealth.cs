@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] float currentHealth = 10;
+    [SerializeField] float maxHealth = 12;
     [SerializeField] Text healthText;
     [SerializeField] GameObject gameOverCanvas;
 
@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] AudioClip loseMusic;
 
     bool hasTakenDamage = false;
-    float maxHealth = 10;
+    float currentHealth;
     int healthRecoveryDelay = 7;
     int healthRecoveryAmount = 5;
 
@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
         audioSource = GetComponent<AudioSource>();
         gameOverCanvas.SetActive(false);
         healthText.text = currentHealth.ToString();
