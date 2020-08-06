@@ -17,17 +17,26 @@ public class EnemyAI : MonoBehaviour
 
     Transform target;
     float distanceToTarget = Mathf.Infinity;
+    float updatePathEveryFrameRange = 20f;
     bool isProvoked = false;
+    bool startedUpdating = false;
 
     // Cached Components
+    Animator animator;
     AudioSource audioSource;
+    NavMeshAgent navAgent;
+    NavMeshPath path;
 
     // Start is called before the first frame update
     void Start()
     {
-        isProvoked = startProvoked;
         target = FindObjectOfType<PlayerHealth>().transform;
+        animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        navAgent = GetComponent<NavMeshAgent>();
+        path = new NavMeshPath();
+
+        isProvoked = startProvoked;
     }
 
     // Update is called once per frame
@@ -40,34 +49,37 @@ public class EnemyAI : MonoBehaviour
 
         if (isProvoked)
         {
-            EngageTarget();
-            if(!previousIsProvoked) audioSource.PlayOneShot(engageSFX, 0.5f);
+            FaceTarget();
+            bool canZombieAttack = (distanceToTarget <= navAgent.stoppingDistance);
+            bool isZombieClose = (distanceToTarget <= updatePathEveryFrameRange);
+            animator.SetBool("attack", canZombieAttack);
+
+            if (!canZombieAttack && !startedUpdating) StartCoroutine(UpdatePath());
+            if (isZombieClose) navAgent.SetDestination(target.position);
+            if (!previousIsProvoked)
+            {
+                audioSource.PlayOneShot(engageSFX, 0.5f);
+            }
         }
     }
 
-    private void EngageTarget()
+    IEnumerator UpdatePath()
     {
-        float stoppingDistance = GetComponent<NavMeshAgent>().stoppingDistance;
+        startedUpdating = true;
+        animator.SetBool("attack", false);
+        animator.SetTrigger("move");
+        while (true)
+        {
+            if (NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, path))
+                if (distanceToTarget >= updatePathEveryFrameRange)
+                    navAgent.SetPath(path);
 
-        FaceTarget();
+            yield return new WaitForSeconds(2.5f);
 
-        if (distanceToTarget >= stoppingDistance)
-            ChaseTarget();
-
-        if (distanceToTarget < stoppingDistance)
-            AttackTarget();
-    }
-
-    private void ChaseTarget()
-    {
-        GetComponent<Animator>().SetBool("attack", false);
-        GetComponent<Animator>().SetTrigger("move");
-        GetComponent<NavMeshAgent>().SetDestination(target.position);
-    }
-
-    private void AttackTarget()
-    {
-        GetComponent<Animator>().SetBool("attack", true);
+            /* For Debugging
+            for (int i = 0; i < path.corners.Length - 1; i++)
+                Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);*/
+        }
     }
 
     private void FaceTarget()

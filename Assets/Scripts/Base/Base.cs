@@ -38,9 +38,7 @@ public class Base : MonoBehaviour
 
         // Handle Panic Mode
         GetComponentInChildren<PanicModeRespawner>()?.RespawnAllZombies(); // Will respawn all zombies in the woods
-        SpawnerController spawnerController = FindObjectOfType<SpawnerController>();
-        //FindObjectOfType<MusicPlayer>()?.ChangeClipTo(panicModeMusic, true);
-        Destroy(spawnerController.gameObject);
+        FindObjectOfType<MusicPlayer>()?.ChangeClipTo(panicModeMusic, false);
         BroadcastMessage("EnterPanicMode");
     }
 

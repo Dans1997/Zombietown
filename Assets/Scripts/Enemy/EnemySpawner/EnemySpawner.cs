@@ -38,11 +38,10 @@ public class EnemySpawner : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(spawnRate);
-            if ((isEnabled && !meshRenderer.isVisible && spawnerController.CanSpawnZombies()) || panicMode)
+            if ((isEnabled && !meshRenderer.isVisible && spawnerController.CanSpawnZombies()) || panicMode && spawnerController.CanSpawnZombies())
             {
-                Debug.Log("Creating");
                 Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-                spawnerController.IncreaseZombieNumber();
+                spawnerController?.IncreaseZombieNumber();
             }
         }
     }

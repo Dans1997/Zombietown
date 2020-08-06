@@ -17,6 +17,16 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6121542811969034104, guid: 1d07605ead8ab314da93da676bd143f2,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121542811969034104, guid: 1d07605ead8ab314da93da676bd143f2,
+        type: 3}
+      propertyPath: m_AutoBraking
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6121542811969034105, guid: 1d07605ead8ab314da93da676bd143f2,
         type: 3}
       propertyPath: startProvoked
@@ -30,17 +40,17 @@ PrefabInstance:
     - target: {fileID: 6121542811969034108, guid: 1d07605ead8ab314da93da676bd143f2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.47
+      value: 60.35
       objectReference: {fileID: 0}
     - target: {fileID: 6121542811969034108, guid: 1d07605ead8ab314da93da676bd143f2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100
+      value: 101.43495
       objectReference: {fileID: 0}
     - target: {fileID: 6121542811969034108, guid: 1d07605ead8ab314da93da676bd143f2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -168.15831
+      value: -144.5714
       objectReference: {fileID: 0}
     - target: {fileID: 6121542811969034108, guid: 1d07605ead8ab314da93da676bd143f2,
         type: 3}
