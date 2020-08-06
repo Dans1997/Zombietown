@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class CheckPoint : MonoBehaviour
 {
     private static CheckPoint instance;
-    bool isActive = true;
+    bool isActive = false;
 
     // Awake is called before Start
     private void Awake()
