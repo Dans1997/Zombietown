@@ -45,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ProcessHit(float damage)
     {
-        currentHealth -= damage;
+        currentHealth = Mathf.Max(currentHealth - damage, 0);
         StopAllCoroutines();
         StartCoroutine(HandleHealthRecovery());
 
