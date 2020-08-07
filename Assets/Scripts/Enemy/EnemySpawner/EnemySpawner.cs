@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -38,10 +39,15 @@ public class EnemySpawner : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(spawnRate);
-            if ((isEnabled && !meshRenderer.isVisible && spawnerController.CanSpawnZombies()) || panicMode && spawnerController.CanSpawnZombies())
+            if (!meshRenderer.isVisible || panicMode)
             {
-                Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-                spawnerController?.IncreaseZombieNumber();
+                if ((isEnabled && spawnerController.CanSpawnZombies()) || panicMode)
+                {
+                    EnemyHealth newZombie = Instantiate(enemyPrefab);
+                    newZombie.GetComponent<NavMeshAgent>().Warp(transform.position);
+                    Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+                    spawnerController.IncreaseZombieNumber();
+                }
             }
         }
     }
