@@ -259,7 +259,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 10
   DopplerLevel: 0
   MinDistance: 10
   MaxDistance: 30
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 8
-  deathDelay: 15
+  deathDelay: 1
   deathSFX: {fileID: 8300000, guid: 53fa6d04d37a844439af84c0e5b8a939, type: 3}
   damageSFX: {fileID: 8300000, guid: df135567eec7fbb4093349f194a9f35c, type: 3}
 --- !u!114 &4972139638117188880
@@ -407,13 +407,13 @@ MonoBehaviour:
   drops:
   - dropPrefab: {fileID: 8362572467810117173, guid: 58ac227fc72fb424683209473478b4eb,
       type: 3}
-    dropChance: 0.02
+    dropChance: 0.05
   - dropPrefab: {fileID: 6226970686603696723, guid: 4b931294715e665438eaa5848b81838f,
       type: 3}
-    dropChance: 0.35
+    dropChance: 0.2
   - dropPrefab: {fileID: 943866597668475287, guid: fe043ffed8ad82842a44583c8acaee01,
       type: 3}
-    dropChance: 0.02
+    dropChance: 0.01
 --- !u!1001 &4671368217185718215
 PrefabInstance:
   m_ObjectHideFlags: 0

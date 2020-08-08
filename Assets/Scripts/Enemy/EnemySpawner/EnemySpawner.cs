@@ -41,18 +41,17 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnRate);
             if (!meshRenderer.isVisible || panicMode)
             {
-                if ((isEnabled && spawnerController.CanSpawnZombies()) || panicMode)
+                if ((isEnabled && spawnerController.CanSpawnZombies()))
                 {
                     EnemyHealth newZombie = Instantiate(enemyPrefab);
                     newZombie.GetComponent<NavMeshAgent>().Warp(transform.position);
-                    Instantiate(enemyPrefab, transform.position, Quaternion.identity);
                     spawnerController.IncreaseZombieNumber();
                 }
             }
         }
     }
 
-    private void EnterPanicMode() { selectedPrefab = enemyPanicPrefab; spawnRate = minSpawnRate; panicMode = true; }
+    private void EnterPanicMode() { selectedPrefab = enemyPanicPrefab; spawnRate = minSpawnRate; panicMode = true; isEnabled = true; }
 
     private void SetSpawnerActive(bool active) => isEnabled = active;
 

@@ -43,11 +43,6 @@ public class SpawnerController : MonoBehaviour
         BroadcastMessage("SetSpawnerActive", true);
 
         // SFXs
-        EnemyHealth[] activeZombies = FindObjectsOfType<EnemyHealth>();
-        foreach(EnemyHealth zombie in activeZombies)
-        {
-            zombie.ProcessHit(999f);
-        }
         FindObjectOfType<MusicPlayer>()?.ChangeClipTo(enableSpawnerMusic, true);
         AudioSource.PlayClipAtPoint(enableSpawnerSFX, Camera.main.transform.position, 1f);
     }

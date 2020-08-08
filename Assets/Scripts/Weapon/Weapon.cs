@@ -102,7 +102,7 @@ public class Weapon : MonoBehaviour
             EnemyHealth enemyHealth = hit.transform.GetComponent<EnemyHealth>();
             if (enemyHealth)
             {
-                if(hit.collider.GetType().Name == "SphereCollider") enemyHealth.ProcessHit(damage * 2);
+                if(hit.collider.GetType().Name == "SphereCollider") enemyHealth.ProcessHit(damage * 3);
                 else enemyHealth.ProcessHit(damage);
             }
         }

@@ -37,7 +37,8 @@ public class Base : MonoBehaviour
         StartCoroutine(ShowCanvas(enableBaseCanvas, 5f));
 
         // Handle Panic Mode
-        foreach (EnemyHealth zombie in FindObjectsOfType<EnemyHealth>()) Destroy(zombie.gameObject);
+        foreach (EnemyHealth zombie in FindObjectsOfType<EnemyHealth>()) zombie.ProcessHit(999f);
+        foreach (EnemySpawner spawner in FindObjectsOfType<EnemySpawner>()) Destroy(spawner.gameObject);
         GetComponentInChildren<PanicModeRespawner>()?.RespawnAllZombies();
         FindObjectOfType<MusicPlayer>()?.ChangeClipTo(panicModeMusic, false);
         BroadcastMessage("EnterPanicMode");
