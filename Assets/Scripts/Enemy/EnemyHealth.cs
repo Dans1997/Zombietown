@@ -7,12 +7,18 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float health = 3f;
 
-    [Tooltip("Time in seconds to destroy zombie after death")]
-    [SerializeField] float deathDelay = 5f;
-
     [Header("SFX")]
     [SerializeField] AudioClip deathSFX;
     [SerializeField] AudioClip damageSFX;
+
+    float currentHealth;
+
+    private void Start()
+    {
+        currentHealth = health;
+    }
+
+    private void OnRecycle() => Start();
 
     public void ProcessHit(float damage)
     {
@@ -22,25 +28,40 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnDamageTaken(float damage)
     {
-        health -= damage;
+        currentHealth -= damage;
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(damageSFX, .8f);
 
-        if (health > 0) return;
+        if (currentHealth > 0) return;
 
-        audioSource.Stop();
-        audioSource.PlayOneShot(deathSFX, .3f);
-        GetComponent<Animator>().SetTrigger("die");
-        GetComponent<EnemyAI>().enabled = false;
-        GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
-        FindObjectOfType<SpawnerController>()?.DecreaseZombieNumber();
+        StartCoroutine(RecycleZombie(audioSource));
 
         //Handle Drop
         GameObject drop = GetComponent<DropHandler>()?.GetDrop();
         Vector3 dropPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         if(drop) Instantiate(drop, dropPos, Quaternion.identity);
+    }
 
-        Destroy(gameObject, deathDelay);
+    IEnumerator RecycleZombie(AudioSource audioSource)
+    {
+        Animator animator = GetComponent<Animator>();
+        EnemyAI enemyAI = GetComponent<EnemyAI>();
+        NavMeshAgent navMeshAgent = GetComponent<NavMeshAgent>();
+        CapsuleCollider collider = GetComponent<CapsuleCollider>();
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(deathSFX, .3f);
+        animator.SetTrigger("die");
+        enemyAI.enabled = false;
+        navMeshAgent.enabled = false;
+        collider.enabled = false;
+
+        yield return new WaitForSeconds(3f);
+
+        animator.Play("Idle", -1, 0f);
+        enemyAI.enabled = true;
+        navMeshAgent.enabled = true;
+        collider.enabled = true;
+        ObjectPooler.ObjectPoolerInstance.RecycleObject(ObjectPooler.PoolKey.ZombiePool, gameObject);
     }
 }

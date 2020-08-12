@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class SpawnerController : MonoBehaviour
 {
     [Header("Spawner")]
-    [SerializeField] int maxZombiesInScene = 30;
     [SerializeField] Canvas enableSpawnerCanvas;
     [SerializeField] AudioClip enableSpawnerSFX;
     [SerializeField] AudioClip enableSpawnerMusic;
@@ -15,7 +14,6 @@ public class SpawnerController : MonoBehaviour
     [Header("Timer")]
     [SerializeField] Text timerText;
 
-    [SerializeField] int currentZombiesInScene = 0;
     int increaseRateDelay = 60; // Each wave is 1 minute long
     int timeElapsed = 0;
     int waveNumber = 0;
@@ -58,11 +56,6 @@ public class SpawnerController : MonoBehaviour
             UpdateUI();
         }
     }
-
-    public bool CanSpawnZombies() => currentZombiesInScene < maxZombiesInScene;
-    public int GetZombiesInScene() => currentZombiesInScene;
-    public void IncreaseZombieNumber() => currentZombiesInScene++;
-    public void DecreaseZombieNumber() => currentZombiesInScene = Mathf.Max(--currentZombiesInScene, 0);
 
     private void HandleSpawnersRates()
     {

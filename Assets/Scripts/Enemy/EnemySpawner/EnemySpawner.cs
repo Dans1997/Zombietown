@@ -5,11 +5,8 @@ using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] EnemyHealth enemyPrefab;
-    [SerializeField] EnemyHealth enemyPanicPrefab;
     [SerializeField] float spawnRate;
 
-    EnemyHealth selectedPrefab;
     [SerializeField] bool panicMode = false;
     bool isEnabled = false;
     float minSpawnRate = 5f;
@@ -21,7 +18,6 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        selectedPrefab = enemyPrefab;
         spawnerController = FindObjectOfType<SpawnerController>();
         meshRenderer = GetComponent<MeshRenderer>();
         StartCoroutine(SpawnEnemy());
@@ -41,17 +37,24 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnRate);
             if (!meshRenderer.isVisible || panicMode)
             {
-                if ((isEnabled && spawnerController.CanSpawnZombies()))
+                if (isEnabled)
                 {
-                    EnemyHealth newZombie = Instantiate(enemyPrefab);
-                    newZombie.GetComponent<NavMeshAgent>().Warp(transform.position);
-                    spawnerController.IncreaseZombieNumber();
+                    GameObject newZombie = ObjectPooler.ObjectPoolerInstance.SpawnFromPool(ObjectPooler.PoolKey.ZombiePool);
+
+                    if(newZombie)
+                    {
+                        newZombie.GetComponent<NavMeshAgent>().Warp(transform.position);
+                    }
+                    else
+                    {
+                        Debug.Log("Can't Spawn" );
+                    }
                 }
             }
         }
     }
 
-    private void EnterPanicMode() { selectedPrefab = enemyPanicPrefab; spawnRate = minSpawnRate; panicMode = true; isEnabled = true; }
+    private void EnterPanicMode() { spawnRate = minSpawnRate; panicMode = true; isEnabled = true; }
 
     private void SetSpawnerActive(bool active) => isEnabled = active;
 

@@ -41,6 +41,13 @@ public class EnemyAI : MonoBehaviour
         isProvoked = startProvoked;
     }
 
+    private void OnRecycle()
+    {
+        target = FindObjectOfType<PlayerHealth>().transform;
+        startedUpdating = false;
+        isProvoked = startProvoked;
+    }
+
     // Update is called once per frame
     void Update()
     {
